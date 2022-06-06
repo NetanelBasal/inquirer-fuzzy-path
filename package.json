@@ -1,10 +1,13 @@
 {
-  "name": "inquirer-fuzzy-path",
-  "version": "2.3.0",
+  "name": "@ngneat/inquirer-fuzzy-path",
+  "version": "1.0.1",
   "description": "Fuzzy file/directory search and select prompt for inquirer.",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "publishConfig": {
+    "access": "public"
   },
   "repository": {
     "type": "git",

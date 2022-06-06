@@ -58,8 +58,8 @@ function getPaths(
     (nodeList) => {
       const preFilteredNodes =
         !excludeFilter
-        ? nodeList
-        : nodeList.filter(node => !excludeFilter(node));
+          ? nodeList
+          : nodeList.filter(node => !excludeFilter(node));
 
       const filteredNodes = fuzzy
         .filter(pattern || '', preFilteredNodes, fuzzOptions)
@@ -80,21 +80,28 @@ class InquirerFuzzyPath extends InquirerAutocomplete {
       itemType = 'any',
       rootPath = '.',
       excludePath = () => false,
-      excludeFilter = false
+      excludeFilter = false,
+      includeCurrentDir = true
     } = question;
     const questionBase = Object.assign(
       {},
       question,
       {
-        source: (_, pattern) => getPaths(
-          rootPath,
-          pattern,
-          excludePath,
-          excludeFilter,
-          itemType,
-          question.default,
-          depthLimit,
-        ),
+        source: (_, pattern) => {
+          return getPaths(
+            rootPath,
+            pattern,
+            excludePath,
+            excludeFilter,
+            itemType,
+            question.default,
+            depthLimit,
+          ).then(paths => {
+            includeCurrentDir && path.unshift('.');
+
+            return paths
+          })
+        }
       },
     );
     super(questionBase, rl, answers);
