@@ -1,6 +1,6 @@
 {
   "name": "@ngneat/inquirer-fuzzy-path",
-  "version": "1.0.1",
+  "version": "1.0.3",
   "description": "Fuzzy file/directory search and select prompt for inquirer.",
   "main": "index.js",
   "scripts": {

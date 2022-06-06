@@ -97,7 +97,7 @@ class InquirerFuzzyPath extends InquirerAutocomplete {
             question.default,
             depthLimit,
           ).then(paths => {
-            includeCurrentDir && path.unshift('.');
+            includeCurrentDir && paths.unshift('.');
 
             return paths
           })
